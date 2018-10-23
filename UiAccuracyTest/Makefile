@@ -53,24 +53,28 @@ SOURCES       = main.cpp \
 		NoVechPhotoCollection.cpp \
 		GpsDialog.cpp \
 		CameraParamDialog.cpp \
-		ContinuousShotDialog.cpp qrc_showpics.cpp \
+		ContinuousShotDialog.cpp \
+		CameraDialog.cpp qrc_showpics.cpp \
 		moc_AccuracyTestDialog.cpp \
 		moc_NoVechPhotoCollection.cpp \
 		moc_GpsDialog.cpp \
 		moc_CameraParamDialog.cpp \
-		moc_ContinuousShotDialog.cpp
+		moc_ContinuousShotDialog.cpp \
+		moc_CameraDialog.cpp
 OBJECTS       = main.o \
 		AccuracyTestDialog.o \
 		NoVechPhotoCollection.o \
 		GpsDialog.o \
 		CameraParamDialog.o \
 		ContinuousShotDialog.o \
+		CameraDialog.o \
 		qrc_showpics.o \
 		moc_AccuracyTestDialog.o \
 		moc_NoVechPhotoCollection.o \
 		moc_GpsDialog.o \
 		moc_CameraParamDialog.o \
-		moc_ContinuousShotDialog.o
+		moc_ContinuousShotDialog.o \
+		moc_CameraDialog.o
 DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.4.0/5.4/gcc_64/mkspecs/common/shell-unix.conf \
 		../../../../Qt5.4.0/5.4/gcc_64/mkspecs/common/unix.conf \
@@ -194,12 +198,14 @@ DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		NoVechPhotoCollection.h \
 		GpsDialog.h \
 		CameraParamDialog.h \
-		ContinuousShotDialog.h main.cpp \
+		ContinuousShotDialog.h \
+		CameraDialog.h main.cpp \
 		AccuracyTestDialog.cpp \
 		NoVechPhotoCollection.cpp \
 		GpsDialog.cpp \
 		CameraParamDialog.cpp \
-		ContinuousShotDialog.cpp
+		ContinuousShotDialog.cpp \
+		CameraDialog.cpp
 QMAKE_TARGET  = UiAccuracyTest
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = UiAccuracyTest
@@ -227,7 +233,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_AccuracyTestDialog.h ui_NoVechPhotoCollection.h ui_GpsDialog.h ui_CameraParamDialog.h ui_ContinuousShotDialog.h $(OBJECTS)  
+$(TARGET): ui_AccuracyTestDialog.h ui_NoVechPhotoCollection.h ui_GpsDialog.h ui_CameraParamDialog.h ui_ContinuousShotDialog.h ui_CameraDialog.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: UiAccuracyTest.pro ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++/qmake.conf ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
@@ -494,9 +500,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents showpics.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents AccuracyTestDialog.h NoVechPhotoCollection.h GpsDialog.h CameraParamDialog.h ContinuousShotDialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp AccuracyTestDialog.cpp NoVechPhotoCollection.cpp GpsDialog.cpp CameraParamDialog.cpp ContinuousShotDialog.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents AccuracyTestDialog.ui NoVechPhotoCollection.ui GpsDialog.ui CameraParamDialog.ui ContinuousShotDialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents AccuracyTestDialog.h NoVechPhotoCollection.h GpsDialog.h CameraParamDialog.h ContinuousShotDialog.h CameraDialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp AccuracyTestDialog.cpp NoVechPhotoCollection.cpp GpsDialog.cpp CameraParamDialog.cpp ContinuousShotDialog.cpp CameraDialog.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents AccuracyTestDialog.ui NoVechPhotoCollection.ui GpsDialog.ui CameraParamDialog.ui ContinuousShotDialog.ui CameraDialog.ui $(DISTDIR)/
 
 
 clean:compiler_clean 
@@ -533,9 +539,9 @@ qrc_showpics.cpp: showpics.qrc \
 		images/9.jpg
 	/home/baidu/Qt5.4.0/5.4/gcc_64/bin/rcc -name showpics showpics.qrc -o qrc_showpics.cpp
 
-compiler_moc_header_make_all: moc_AccuracyTestDialog.cpp moc_NoVechPhotoCollection.cpp moc_GpsDialog.cpp moc_CameraParamDialog.cpp moc_ContinuousShotDialog.cpp
+compiler_moc_header_make_all: moc_AccuracyTestDialog.cpp moc_NoVechPhotoCollection.cpp moc_GpsDialog.cpp moc_CameraParamDialog.cpp moc_ContinuousShotDialog.cpp moc_CameraDialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_AccuracyTestDialog.cpp moc_NoVechPhotoCollection.cpp moc_GpsDialog.cpp moc_CameraParamDialog.cpp moc_ContinuousShotDialog.cpp
+	-$(DEL_FILE) moc_AccuracyTestDialog.cpp moc_NoVechPhotoCollection.cpp moc_GpsDialog.cpp moc_CameraParamDialog.cpp moc_ContinuousShotDialog.cpp moc_CameraDialog.cpp
 moc_AccuracyTestDialog.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -1156,11 +1162,117 @@ moc_ContinuousShotDialog.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/Q
 		ContinuousShotDialog.h
 	/home/baidu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/baidu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/baidu/Documents/qt_stu/UI_AccuracyTest/UiAccuracyTest -I/home/baidu/Qt5.4.0/5.4/gcc_64/include -I/home/baidu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/baidu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/baidu/Qt5.4.0/5.4/gcc_64/include/QtCore ContinuousShotDialog.h -o moc_ContinuousShotDialog.cpp
 
+moc_CameraDialog.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcolor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmatrix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpolygon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qregion.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qline.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtransform.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfont.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
+		CameraDialog.h
+	/home/baidu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/baidu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/baidu/Documents/qt_stu/UI_AccuracyTest/UiAccuracyTest -I/home/baidu/Qt5.4.0/5.4/gcc_64/include -I/home/baidu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/baidu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/baidu/Qt5.4.0/5.4/gcc_64/include/QtCore CameraDialog.h -o moc_CameraDialog.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_AccuracyTestDialog.h ui_NoVechPhotoCollection.h ui_GpsDialog.h ui_CameraParamDialog.h ui_ContinuousShotDialog.h
+compiler_uic_make_all: ui_AccuracyTestDialog.h ui_NoVechPhotoCollection.h ui_GpsDialog.h ui_CameraParamDialog.h ui_ContinuousShotDialog.h ui_CameraDialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_AccuracyTestDialog.h ui_NoVechPhotoCollection.h ui_GpsDialog.h ui_CameraParamDialog.h ui_ContinuousShotDialog.h
+	-$(DEL_FILE) ui_AccuracyTestDialog.h ui_NoVechPhotoCollection.h ui_GpsDialog.h ui_CameraParamDialog.h ui_ContinuousShotDialog.h ui_CameraDialog.h
 ui_AccuracyTestDialog.h: AccuracyTestDialog.ui
 	/home/baidu/Qt5.4.0/5.4/gcc_64/bin/uic AccuracyTestDialog.ui -o ui_AccuracyTestDialog.h
 
@@ -1175,6 +1287,9 @@ ui_CameraParamDialog.h: CameraParamDialog.ui
 
 ui_ContinuousShotDialog.h: ContinuousShotDialog.ui
 	/home/baidu/Qt5.4.0/5.4/gcc_64/bin/uic ContinuousShotDialog.ui -o ui_ContinuousShotDialog.h
+
+ui_CameraDialog.h: CameraDialog.ui
+	/home/baidu/Qt5.4.0/5.4/gcc_64/bin/uic CameraDialog.ui -o ui_CameraDialog.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -1452,6 +1567,11 @@ AccuracyTestDialog.o: AccuracyTestDialog.cpp AccuracyTestDialog.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
@@ -1472,12 +1592,7 @@ AccuracyTestDialog.o: AccuracyTestDialog.cpp AccuracyTestDialog.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AccuracyTestDialog.o AccuracyTestDialog.cpp
 
 NoVechPhotoCollection.o: NoVechPhotoCollection.cpp NoVechPhotoCollection.h \
@@ -1781,6 +1896,11 @@ GpsDialog.o: GpsDialog.cpp GpsDialog.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
@@ -1944,6 +2064,11 @@ CameraParamDialog.o: CameraParamDialog.cpp CameraParamDialog.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
@@ -2109,6 +2234,11 @@ ContinuousShotDialog.o: ContinuousShotDialog.cpp ContinuousShotDialog.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QFrame \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
@@ -2131,6 +2261,113 @@ ContinuousShotDialog.o: ContinuousShotDialog.cpp ContinuousShotDialog.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ContinuousShotDialog.o ContinuousShotDialog.cpp
 
+CameraDialog.o: CameraDialog.cpp CameraDialog.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcolor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmatrix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpolygon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qregion.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qline.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtransform.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfont.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
+		ui_CameraDialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CameraDialog.o CameraDialog.cpp
+
 qrc_showpics.o: qrc_showpics.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_showpics.o qrc_showpics.cpp
 
@@ -2148,6 +2385,9 @@ moc_CameraParamDialog.o: moc_CameraParamDialog.cpp
 
 moc_ContinuousShotDialog.o: moc_ContinuousShotDialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ContinuousShotDialog.o moc_ContinuousShotDialog.cpp
+
+moc_CameraDialog.o: moc_CameraDialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_CameraDialog.o moc_CameraDialog.cpp
 
 ####### Install
 

@@ -28,6 +28,7 @@ public:
     QPushButton *handinput_Gps;
     QPushButton *camera_param;
     QPushButton *continuous_shooting;
+    QPushButton *pushButton_button;
 
     void setupUi(QDialog *AccuracyTestDialog)
     {
@@ -56,7 +57,12 @@ public:
         continuous_shooting = new QPushButton(AccuracyTestDialog);
         continuous_shooting->setObjectName(QStringLiteral("continuous_shooting"));
 
-        gridLayout->addWidget(continuous_shooting, 3, 0, 1, 1);
+        gridLayout->addWidget(continuous_shooting, 4, 0, 1, 1);
+
+        pushButton_button = new QPushButton(AccuracyTestDialog);
+        pushButton_button->setObjectName(QStringLiteral("pushButton_button"));
+
+        gridLayout->addWidget(pushButton_button, 3, 0, 1, 1);
 
 
         retranslateUi(AccuracyTestDialog);
@@ -66,11 +72,12 @@ public:
 
     void retranslateUi(QDialog *AccuracyTestDialog)
     {
-        AccuracyTestDialog->setWindowTitle(QApplication::translate("AccuracyTestDialog", "\347\262\276\345\272\246\346\265\213\350\257\225", 0));
+        AccuracyTestDialog->setWindowTitle(QApplication::translate("AccuracyTestDialog", "\345\256\232\344\275\215\347\262\276\345\272\246\350\257\204\344\274\260\345\267\245\345\205\267", 0));
         photo_collecton->setText(QApplication::translate("AccuracyTestDialog", "\346\227\240\350\275\246\347\205\247\347\211\207\351\207\207\351\233\206", 0));
         handinput_Gps->setText(QApplication::translate("AccuracyTestDialog", "\350\276\223\345\205\245GPS\344\275\215\347\275\256\344\277\241\346\201\257", 0));
-        camera_param->setText(QApplication::translate("AccuracyTestDialog", "camera\345\217\202\346\225\260\351\200\211\346\213\251", 0));
+        camera_param->setText(QApplication::translate("AccuracyTestDialog", "\345\256\232\344\275\215\345\214\272\345\237\237\350\247\222\347\202\271\345\235\220\346\240\207", 0));
         continuous_shooting->setText(QApplication::translate("AccuracyTestDialog", "\350\277\236\347\273\255\346\213\215\347\205\247", 0));
+        pushButton_button->setText(QApplication::translate("AccuracyTestDialog", "\347\233\270\346\234\272\345\217\202\346\225\260\351\200\211\346\213\251", 0));
     } // retranslateUi
 
 };

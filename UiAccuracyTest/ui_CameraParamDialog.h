@@ -153,7 +153,7 @@ public:
 
     void retranslateUi(QDialog *CameraParamDialog)
     {
-        CameraParamDialog->setWindowTitle(QApplication::translate("CameraParamDialog", "\347\233\270\346\234\272\345\217\202\346\225\260\351\200\211\346\213\251\345\212\240\350\275\275", 0));
+        CameraParamDialog->setWindowTitle(QApplication::translate("CameraParamDialog", "\345\256\232\344\275\215\345\214\272\345\237\237\350\247\222\347\202\271\345\235\220\346\240\207", 0));
         axyz->setText(QApplication::translate("CameraParamDialog", "axyz:", 0));
         ax->setText(QApplication::translate("CameraParamDialog", "0", 0));
         ay->setText(QApplication::translate("CameraParamDialog", "0", 0));

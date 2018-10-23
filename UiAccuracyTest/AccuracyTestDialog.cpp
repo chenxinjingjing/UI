@@ -46,3 +46,12 @@ void AccuracyTestDialog::on_continuous_shooting_clicked()
     this->close();
 }
 
+
+void AccuracyTestDialog::on_pushButton_button_clicked()
+{
+
+    CameraDialog* camera_pa=new CameraDialog();
+    camera_pa->show();
+    //跳转窗口并关闭旧的窗口
+    this->accept();
+}

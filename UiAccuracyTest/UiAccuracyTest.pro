@@ -17,19 +17,22 @@ SOURCES += main.cpp\
     NoVechPhotoCollection.cpp \
     GpsDialog.cpp \
     CameraParamDialog.cpp \
-    ContinuousShotDialog.cpp
+    ContinuousShotDialog.cpp \
+    CameraDialog.cpp
 
 HEADERS  += AccuracyTestDialog.h \
     NoVechPhotoCollection.h \
     GpsDialog.h \
     CameraParamDialog.h \
-    ContinuousShotDialog.h
+    ContinuousShotDialog.h \
+    CameraDialog.h
 
 FORMS    += AccuracyTestDialog.ui \
     NoVechPhotoCollection.ui \
     GpsDialog.ui \
     CameraParamDialog.ui \
-    ContinuousShotDialog.ui
+    ContinuousShotDialog.ui \
+    CameraDialog.ui
 
 DISTFILES +=
 

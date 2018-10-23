@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>精度测试</string>
+   <string>定位精度评估工具</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -31,14 +31,21 @@
    <item row="2" column="0">
     <widget class="QPushButton" name="camera_param">
      <property name="text">
-      <string>camera参数选择</string>
+      <string>定位区域角点坐标</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="continuous_shooting">
+     <property name="text">
+      <string>连续拍照</string>
      </property>
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QPushButton" name="continuous_shooting">
+    <widget class="QPushButton" name="pushButton_button">
      <property name="text">
-      <string>连续拍照</string>
+      <string>相机参数选择</string>
      </property>
     </widget>
    </item>
